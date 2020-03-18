@@ -1,0 +1,445 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+html {
+  font-size: 16px;
+}
+
+html,
+body {
+  background-color: #fbfbfb;
+  min-height: 100vh;
+}
+
+.ham-menu {
+  position: absolute;
+  z-index: 2;
+}
+
+.ham-menu img {
+  padding: 1rem;
+  height: 3rem;
+  width: auto;
+  cursor: pointer;
+}
+
+nav {
+  background-color: #ffffff;
+  -webkit-box-shadow: 3px 0px 5px -2px rgba(0, 0, 0, 0.04);
+          box-shadow: 3px 0px 5px -2px rgba(0, 0, 0, 0.04);
+  height: 100vh;
+  width: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 3;
+  position: fixed;
+  -webkit-transition: 200ms ease-in-out;
+  transition: 200ms ease-in-out;
+}
+
+nav .project-section {
+  padding-top: 1.3rem;
+  visibility: hidden;
+}
+
+nav .project-section h1 {
+  padding-bottom: 2.5rem;
+  text-align: center;
+  font-size: 1.625rem;
+  font-weight: 400;
+}
+
+nav .project-section ul {
+  list-style: none;
+  color: #616161;
+  font-size: 1.0625rem;
+  font-weight: 00;
+}
+
+nav .project-section ul li {
+  padding-bottom: 1rem;
+}
+
+nav .project-section .word-highlight {
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+nav .project-section .new-project {
+  margin-top: 1rem;
+  color: #aaaaaa;
+  font-size: 1.0625rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+nav .project-section .new-project img {
+  height: 17px;
+  width: auto;
+  margin-left: 10px;
+}
+
+nav .project-section .hide-new-project {
+  display: none;
+}
+
+nav .project-section .add-project input {
+  margin-top: 1rem;
+  height: 2.6rem;
+  width: 8.5rem;
+  border: 0.5px solid #dedede;
+  border-radius: 7px;
+  padding-left: 1rem;
+  font-size: 0.875rem;
+  color: #1a1a1a;
+}
+
+nav .project-section .add-project input::-webkit-input-placeholder {
+  color: #aaaaaa;
+}
+
+nav .project-section .add-project input:-ms-input-placeholder {
+  color: #aaaaaa;
+}
+
+nav .project-section .add-project input::-ms-input-placeholder {
+  color: #aaaaaa;
+}
+
+nav .project-section .add-project input::placeholder {
+  color: #aaaaaa;
+}
+
+nav .project-section .add-project div {
+  padding-top: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0 1rem;
+}
+
+nav .project-section .add-project div span {
+  color: #9c9a9a;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+nav .project-section .add-project div img {
+  height: 1.9rem;
+  width: auto;
+  cursor: pointer;
+}
+
+nav .project-section .hide-add-project {
+  display: none;
+}
+
+nav .delete-project {
+  visibility: hidden;
+  font-size: 1.0625rem;
+  font-weight: 400;
+  color: #aaaaaa;
+  padding-bottom: 1.5rem;
+}
+
+main {
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+main .invisible-div {
+  height: 100%;
+  position: absolute;
+}
+
+main .dark-veil {
+  z-index: 1;
+  position: absolute;
+  min-height: 300vh;
+  width: 100%;
+  background: #aeaeae8c;
+}
+
+main .project-name {
+  margin-top: 3rem;
+}
+
+main .project-name img {
+  padding: 1rem;
+}
+
+main .project-name h2 {
+  text-align: center;
+  font-size: 2.125rem;
+  font-weight: 400;
+}
+
+main .add-task {
+  text-align: center;
+  margin-top: 1.5rem;
+  display: none;
+}
+
+main .add-task label {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #272727;
+  margin-bottom: 1rem;
+}
+
+main .add-task #task-input {
+  height: 2.3rem;
+  width: 13rem;
+  border-radius: 7px;
+  border: 0.5px solid #acacac;
+  margin-bottom: 1rem;
+  padding-left: 1.6rem;
+}
+
+main .add-task #task-input::-webkit-input-placeholder {
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #707070;
+}
+
+main .add-task #task-input:-ms-input-placeholder {
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #707070;
+}
+
+main .add-task #task-input::-ms-input-placeholder {
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #707070;
+}
+
+main .add-task #task-input::placeholder {
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #707070;
+}
+
+main .add-task #date-input {
+  text-align: center;
+  height: 2.3rem;
+  width: 10rem;
+  border-radius: 7px;
+  border: 1px solid #acacac;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #707070;
+}
+
+main .add-task #date-input::-webkit-inner-spin-button {
+  display: none;
+}
+
+main .add-task #date-input::-webkit-calendar-picker-indicator {
+  margin-right: 0.6rem;
+  cursor: pointer;
+}
+
+main .add-task #date-input::-webkit-datetime-edit {
+  margin-left: 1.5rem;
+}
+
+main .add-task #date::-webkit-calendar-picker-indicator {
+  display: inline-block;
+}
+
+main .add-task button {
+  margin-top: 0.5rem;
+  background-color: #ff4141;
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 4px;
+  padding: 0.65rem 1rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+main .add-task div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+main .add-task p {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9375rem;
+  color: #9c9a9a;
+  cursor: pointer;
+}
+
+main .background-image {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+main .background-image img {
+  height: 10rem;
+  width: auto;
+}
+
+main .background-image p {
+  font-size: 1.3125rem;
+  font-weight: 300;
+  color: #b7b3b3;
+  padding-top: 0.5rem;
+}
+
+main .new-task {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+main .new-task button {
+  background-color: #ff4141;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 4px;
+  padding: 0.65rem 1rem;
+  cursor: pointer;
+}
+
+main .task-list {
+  margin-top: 1rem;
+  display: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .task-list .task {
+  margin-top: 1rem;
+  position: relative;
+  width: 18rem;
+  border-bottom: 0.1px #d6d6d6 solid;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-top: 1.2rem;
+  opacity: 1;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+main .task-list .task .date {
+  color: #9c9a9a;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: left;
+  width: 5rem;
+  padding-bottom: 1.5rem;
+}
+
+main .task-list .task .checkmark {
+  position: absolute;
+  display: inline-block;
+  width: 1.2rem;
+  height: 1.2rem;
+  background-color: #cecece;
+  border-radius: 2px;
+  -webkit-transition: opacity 0.8s;
+  transition: opacity 0.8s;
+  opacity: 1;
+  cursor: pointer;
+}
+
+main .task-list .task .checkmark::after {
+  content: "";
+  position: absolute;
+  width: 0.3125rem;
+  height: 0.5625rem;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+  top: 45%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) rotateZ(40deg);
+          transform: translate(-50%, -50%) rotateZ(40deg);
+}
+
+main .task-list .task input[type="checkbox"] {
+  display: none;
+}
+
+main .task-list .task .task-text {
+  margin-left: 2rem;
+  padding-bottom: 1.2rem;
+  display: inline-block;
+  max-width: 10rem;
+  color: #616161;
+  font-size: 0.95rem;
+  -webkit-transition: 0.8s;
+  transition: 0.8s;
+  opacity: 1;
+}
+
+main .task-list .hide-task {
+  opacity: 0;
+}
+/*# sourceMappingURL=style.css.map */
