@@ -9,7 +9,7 @@ function domMenu() {
     const main = document.querySelector('main');
     const projectList = document.querySelector('#projects-ul');
 
-    const nav = document.querySelector('nav'); 
+    const nav = document.querySelector('nav');
     const projectSection = document.querySelector('.project-section');
     const deleteProject = document.querySelector('.delete-project');
 
@@ -18,6 +18,7 @@ function domMenu() {
         nav.classList.add('open-nav')
         projectSection.classList.add('show-project-section')
         deleteProject.classList.add('show-delete-project')
+
     }
 
     function closeMenu() {
@@ -177,7 +178,7 @@ function addProjectDOM() {
 };
 
 
-function renderProjects(array) {
+function renderProjects(array, projectLis, current) {
 
     const projects = document.querySelector('#projects-ul');
 
@@ -201,6 +202,18 @@ function renderProjects(array) {
         li.textContent = project.name
         projects.appendChild(li)
     })
+
+    const projectLi = document.querySelectorAll(projectLis)
+
+    projectLi.forEach((project, index) => {
+
+        project.classList.remove('word-highlight')
+
+        if (index == current) {
+            project.classList.add('word-highlight')
+        }
+    });
+
 }
 
 
@@ -209,10 +222,18 @@ function projectDisplays() {
     const newProjectBtn = document.querySelector('.new-project');
     const cancelBtn = document.querySelector('#cancel-btn');
     const addProject = document.querySelector('.add-project');
+    const addProjectBtn = document.querySelector('#add-project-btn')
 
     addProject.classList.add('hide-add-project');
 
     newProjectBtn.addEventListener('click', () => {
+
+        addProject.classList.toggle('hide-add-project')
+        newProjectBtn.classList.toggle('hide-new-project')
+
+    })
+
+    addProjectBtn.addEventListener('click', () => {
 
         addProject.classList.toggle('hide-add-project')
         newProjectBtn.classList.toggle('hide-new-project')

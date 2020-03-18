@@ -2,6 +2,7 @@
 import { setDate } from './dates';
 import { isBefore, parseISO, endOfDay, startOfDay, isAfter } from 'date-fns'
 import { domMenu, checkboxStyle, hideBackground, showBackground, addTaskDOM, renderTasks, addProjectDOM, renderProjects } from './dom';
+import { projectStorage } from './localStorage'
 
 const todoList = (function () {
 
@@ -11,12 +12,42 @@ const todoList = (function () {
     showBackground();
     addTaskDOM();
 
+    let projects;
 
-    let projects = [
-        { name: 'Inbox', tasks: [] },
-    ];
+    let currentProject;
 
-    let currentProject = 0;
+
+    function loadStorage () {
+
+        let projectStorage = JSON.parse(localStorage.getItem('Projects storage'))
+        let currentProjectStorage = localStorage.getItem('Current project')
+    
+        if (projectStorage === null) {
+
+            console.log('es null')
+
+            projects = [
+                { name: 'Inbox', tasks: [] },
+            ]
+
+            currentProject = 0;
+
+            renderProjects(projects, '.project', currentProject)
+            render()
+        } else {
+            projects = projectStorage;
+            currentProject = currentProjectStorage;
+
+            console.log(`No es null, projects: ${projects} y current es ${currentProject}`)
+
+
+            renderProjects(projects, '.project', currentProject)
+            render()
+
+        };
+    };
+
+    loadStorage()
 
     function createProject(name) {
         projects.push(
@@ -33,6 +64,10 @@ const todoList = (function () {
     }
 
     function render() {
+
+        const projectTitle = document.querySelector('.project-title')
+
+        projectTitle.textContent = projects[currentProject].name;
 
         const taskList = document.querySelector('.task-list');
 
@@ -93,6 +128,7 @@ const todoList = (function () {
             }
         })
         render();
+        projectStorage(projects, currentProject);
     })
 
     const taskList = document.querySelector('.task-list')
@@ -111,6 +147,7 @@ const todoList = (function () {
 
             setTimeout(() => {
                 completeTask(index)
+                projectStorage(projects, currentProject);
 
                 while (taskList.firstChild) {
                     taskList.removeChild(taskList.firstChild)
@@ -130,7 +167,8 @@ const todoList = (function () {
 
         if (input.validity.valid) {
             createProject(addProjectDOM())
-            renderProjects(projects)
+            renderProjects(projects, '.project', currentProject)
+            projectStorage(projects, currentProject);
 
             projects.forEach((project, index) => {
 
@@ -140,6 +178,9 @@ const todoList = (function () {
                     projectTitle.textContent = project.name
                     currentProject = index
                     render()
+                    renderProjects(projects, '.project', currentProject)
+                    projectStorage(projects, currentProject);
+
                 }
             })
         } else {
@@ -147,10 +188,7 @@ const todoList = (function () {
         }
     });
 
-    renderProjects(projects);
-
-
-
+    renderProjects(projects, '.project', currentProject)
 
 
     const projectList = document.querySelector('#projects-ul')
@@ -175,6 +213,7 @@ const todoList = (function () {
             projectLi[project.id].classList.add('word-highlight')
             currentProject = project.id
             render()
+            projectStorage(projects, currentProject);
         }
     })
 
@@ -183,19 +222,18 @@ const todoList = (function () {
 
     deleteProjectBtn.addEventListener('click', () => {
 
-        if (currentProject === 0) {
+        if (currentProject == 0) {
             return
         } else {
             deleteProject(currentProject);
-            renderProjects(projects)
+            renderProjects(projects, '.project', currentProject)
+            projectStorage(projects, currentProject);
     
             const projectTitle = document.querySelector('.project-title')
             projectTitle.textContent = projects[currentProject].name
     
             render()
-            console.log(projects[currentProject])
         }
-
     })
 
 
