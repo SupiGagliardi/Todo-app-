@@ -6,23 +6,25 @@ export { domMenu, checkboxStyle, hideBackground, showBackground, addTaskDOM, ren
 function domMenu() {
 
     const menu = document.querySelector('.ham-menu');
-    const main = document.querySelector('main')
-    const projectList = document.querySelector('#projects-ul')
+    const main = document.querySelector('main');
+    const projectList = document.querySelector('#projects-ul');
 
-
+    const nav = document.querySelector('nav'); 
+    const projectSection = document.querySelector('.project-section');
+    const deleteProject = document.querySelector('.delete-project');
 
     function openMenu() {
-        document.querySelector('nav').style.cssText = 'width: 11rem;';
-        document.querySelector('.project-section').style.cssText = 'visibility: visible'
-        document.querySelector('.delete-project').style.cssText = 'visibility: visible'
         document.querySelector('.invisible-div').classList.add('dark-veil')
+        nav.classList.add('open-nav')
+        projectSection.classList.add('show-project-section')
+        deleteProject.classList.add('show-delete-project')
     }
 
     function closeMenu() {
-        document.querySelector('nav').style.cssText = 'width: 0';
-        document.querySelector('.project-section').style.cssText = 'visibility: hidden'
-        document.querySelector('.delete-project').style.cssText = 'visibility: hidden'
         document.querySelector('.invisible-div').classList.remove('dark-veil')
+        nav.classList.remove('open-nav')
+        projectSection.classList.remove('show-project-section')
+        deleteProject.classList.remove('show-delete-project')
     }
 
     menu.addEventListener('click', () => {
@@ -40,6 +42,7 @@ function domMenu() {
             closeMenu()
         }
     })
+
 }
 
 
@@ -198,7 +201,6 @@ function renderProjects(array) {
         li.textContent = project.name
         projects.appendChild(li)
     })
-
 }
 
 
@@ -223,7 +225,6 @@ function projectDisplays() {
         newProjectBtn.classList.toggle('hide-new-project')
 
     })
-
 }
 
 projectDisplays()

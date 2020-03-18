@@ -27,6 +27,11 @@ const todoList = (function () {
         )
     };
 
+    function deleteProject(index) {
+        projects.splice(index, 1)
+        currentProject = index - 1
+    }
+
     function render() {
 
         const taskList = document.querySelector('.task-list');
@@ -126,6 +131,17 @@ const todoList = (function () {
         if (input.validity.valid) {
             createProject(addProjectDOM())
             renderProjects(projects)
+
+            projects.forEach((project, index) => {
+
+                if (projects.length === (index + 1)) {
+
+                    const projectTitle = document.querySelector('.project-title')
+                    projectTitle.textContent = project.name
+                    currentProject = index
+                    render()
+                }
+            })
         } else {
             return
         }
@@ -162,6 +178,25 @@ const todoList = (function () {
         }
     })
 
+
+    const deleteProjectBtn = document.querySelector('.delete-project')
+
+    deleteProjectBtn.addEventListener('click', () => {
+
+        if (currentProject === 0) {
+            return
+        } else {
+            deleteProject(currentProject);
+            renderProjects(projects)
+    
+            const projectTitle = document.querySelector('.project-title')
+            projectTitle.textContent = projects[currentProject].name
+    
+            render()
+            console.log(projects[currentProject])
+        }
+
+    })
 
 
 
