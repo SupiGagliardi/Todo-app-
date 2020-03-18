@@ -45,6 +45,8 @@ nav {
   .project-section {
     padding-top: 1.3rem;
     visibility: hidden;
+    opacity: 0;
+    transition: 0.2s;
 
     h1 {
       padding-bottom: 2.5rem;
@@ -77,11 +79,12 @@ nav {
       display: flex;
       justify-content: center;
       align-items: center;
+      font-weight: 300;
       cursor: pointer;
 
 
       img {
-        height: 17px;
+        height: 14px;
         width: auto;
         margin-left: 10px;
       }
@@ -132,6 +135,11 @@ nav {
     .hide-add-project {
       display: none;
     }
+  } 
+
+  .show-project-section {
+    visibility: visible;
+    opacity: 1;
   }
 
   .delete-project {
@@ -140,7 +148,18 @@ nav {
     font-weight: 400;
     color: #aaaaaa;
     padding-bottom: 1.5rem;
+    opacity: 0;
+    transition: 0.2s;
   }
+
+  .show-delete-project {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.open-nav {
+  width: 11rem;
 }
 
 main {
