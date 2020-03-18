@@ -1,5 +1,24 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500&display=swap");
 
+@mixin large-phone {
+  @media (min-width: 375px) {
+    @content
+  }
+};
+
+@mixin tablet {
+  @media (min-width: 768px) {
+    @content
+  }
+};
+
+@mixin desktop {
+  @media (min-width: 1280px) {
+    @content
+  }
+}
+
+
 * {
   margin: 0;
   padding: 0;
@@ -9,12 +28,32 @@
 
 html {
   font-size: 16px;
+
+  @include large-phone {
+    font-size: 18px;
+  }
+
+  @include tablet {
+    font-size: 22px;
+  }
+
+  @include desktop {
+    font-size: 19px;
+  }
 }
 
 html,
 body {
   background-color: #fbfbfb;
   min-height: 100vh;
+
+}
+
+.container {
+
+  @include desktop {
+    display: flex;
+  }
 }
 
 .ham-menu {
@@ -26,6 +65,10 @@ body {
     height: 3rem;
     width: auto;
     cursor: pointer;
+  }
+
+  @include desktop {
+    display: none;
   }
 }
 
@@ -42,11 +85,21 @@ nav {
   position: fixed;
   transition: 200ms ease-in-out;
 
+  @include desktop {
+    width: 14rem;
+    position: relative;
+  }
+
   .project-section {
     padding-top: 1.3rem;
     visibility: hidden;
     opacity: 0;
     transition: 0.2s;
+
+    @include desktop {
+      opacity: 1;
+      visibility: visible;
+    }
 
     h1 {
       padding-bottom: 2.5rem;
@@ -59,7 +112,7 @@ nav {
       list-style: none;
       color: #616161;
       font-size: 1.0625rem;
-      font-weight: 00;
+      font-weight: 300;
 
       li {
         padding-bottom: 1rem;
@@ -69,8 +122,9 @@ nav {
 
     .word-highlight {
       font-weight: 500;
-      color: #1a1a1a;
-    }
+      font-size: 1.3rem;
+      color: #252525;
+    };
 
     .new-project {
       margin-top: 1rem;
@@ -87,6 +141,12 @@ nav {
         height: 14px;
         width: auto;
         margin-left: 10px;
+      }
+    }
+
+    @include desktop {
+      .new-project:hover {
+        color: #888888;
       }
     }
 
@@ -150,7 +210,21 @@ nav {
     padding-bottom: 1.5rem;
     opacity: 0;
     transition: 0.2s;
+    cursor: pointer;
+
+    @include desktop {
+      opacity: 1;
+      visibility: visible;
+
+    }
   }
+
+  @include desktop {
+    .delete-project:hover {
+      color: #888888;
+    }
+  }
+
 
   .show-delete-project {
     visibility: visible;
@@ -160,6 +234,10 @@ nav {
 
 .open-nav {
   width: 11rem;
+
+  @include tablet {
+    width: 13rem;
+  }
 }
 
 main {
@@ -168,6 +246,9 @@ main {
   flex-direction: column;
   justify-content: space-between;
 
+  @include desktop {
+    width: 100%;
+  }
   .invisible-div {
     height: 100%;
     position: absolute;
@@ -177,6 +258,7 @@ main {
     z-index: 1;
     position: absolute;
     min-height: 300vh;
+    transition: 0.3s;
     width: 100%;
     background: #aeaeae8c;
   }
@@ -192,6 +274,11 @@ main {
       text-align: center;
       font-size: 2.125rem;
       font-weight: 400;
+
+      @include desktop {
+        text-align: left;
+        margin-left: 10%;
+      }
     }
   }
 
@@ -317,27 +404,6 @@ main {
     }
   }
 
-  // .add-clear-task {
-
-  //   display: none;
-  //   justify-content: center;
-
-  //   .new-task-btn {
-  //     margin-top: 2rem;
-  //     display: flex;
-
-  //     p {
-  //       color: #aaaaaa;
-  //       font-size: 1.2rem;
-  //       font-weight: 300;
-  //     }
-
-  //     img {
-  //       margin-left: 0.5rem;
-  //     }
-  //   }
-  // }
-
   .task-list {
     margin-top: 1rem;
     display: none; //flex
@@ -356,10 +422,19 @@ main {
       opacity: 1;
       transition: 0.5s;
 
+      @include tablet {
+        width: 30rem;
+      }
+
+      @include desktop {
+        width: 70%;
+        max-width: 55rem;
+      }
+
       .date {
         color: #9c9a9a;
         font-weight: 500;
-        font-size: 14px;
+        font-size: 0.875rem;
         text-align: left;
         width: 5rem;
         padding-bottom: 1.5rem;
@@ -393,14 +468,6 @@ main {
         display: none;
       }
 
-      // input[type="checkbox"]:checked ~ .task-text {
-      //   opacity: 0;
-      // }
-
-      // input[type="checkbox"]:checked ~ label {
-      //   opacity: 0;
-      // }
-
       .task-text {
         margin-left: 2rem;
         padding-bottom: 1.2rem;
@@ -410,6 +477,14 @@ main {
         font-size: 0.95rem;
         transition: 0.8s;
         opacity: 1;
+
+        @include tablet {
+          max-width: 15rem;
+        }
+
+        @include desktop {
+          max-width: 25rem;
+        }
       }
     }
 
