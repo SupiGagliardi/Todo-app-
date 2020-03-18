@@ -1,12 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
+    <link rel="stylesheet" href="./CSS/style.css">
     <script src="main.js" defer></script>
 </head>
+
 <body>
-    
+    <div class="ham-menu">
+        <img src="./media/menu.svg" alt="Mobile menu">
+    </div>
+    <nav id="sidebar">
+        <div class="project-section">
+            <h1 class="project-word">Projects</h1>
+            <ul id="projects-ul">
+            </ul>
+            <div class="add-project">
+                <input type="text" required placeholder="New project..." id="project-input" maxlength="14">
+                <div>
+                    <span id="cancel-btn">Cancel</span>
+                    <img src="./media/add-project.svg" alt="Add project button" id="add-project-btn">
+                </div>
+            </div>
+            <div class="new-project">
+                <span>New project</span>
+                <img src="./media/plus-sign.svg" alt="Plus sign">
+            </div>
+        </div>
+        <p class="delete-project">Delete project</p>
+    </nav>
+    <main>
+        <div class="invisible-div"></div>
+        <div class="project-name">
+            <h2 class="project-title">Inbox</h2>
+        </div>
+        <div class="background-image">
+            <img src="./media/no-tasks-background.svg" alt="Phone image">
+            <p>Get busy</p>
+        </div>
+        <div class="new-task">
+            <button id="new-task">My tasks</button>
+        </div>
+        <div class="task-list">
+            <!-- <div class="task n0">
+                <div>
+                    <input type="checkbox" id="cb0">
+                    <label for="cb0" class="checkmark label0"></label>
+                    <span class="task-text strike0">Pick up kids from school</span>
+                </div>
+                <div class="date">
+                    <p>Today</p>
+                </div>
+
+            </div>
+            <div class="task n1">
+                <div>
+                    <input type="checkbox" id="cb1">
+                    <label for="cb1" class="checkmark label1"></label>
+                    <span class="task-text strike1">Read the design of everyday things</span>
+                </div>
+                <div class="date">
+                    <p>Tomorrow</p>
+                </div>
+
+
+            </div>
+            <div class="task n2">
+                <div>
+                    <input type="checkbox" id="cb2">
+                    <label for="cb2" class="checkmark label2"></label>
+                    <span class="task-text strike2">Call Tom</span>
+                </div>
+                <div class="date">
+                    <p>September 17th</p>
+                </div>
+
+
+            </div> -->
+        </div>
+        <!-- <div class="add-clear-task">
+            <div class="new-task-btn">
+                <p>New task</p>
+                <img src="./media/plus-sign.svg" alt="Plus sign">
+            </div>
+        </div> -->
+        <div class="add-task">
+            <form>
+                <label for="task">Task</label>
+                <input type="text" id="task-input" placeholder="What's on your mind?" required maxlength="32">
+                <label for="date">Date</label>
+                <input type="date" id="date-input" required>
+            </form>
+            <button id="addTask-btn">Add task</button>
+            <div>
+                <p id="cancel-task">Back</p>
+            </div>
+        </div>
+    </main>
 </body>
+
 </html>

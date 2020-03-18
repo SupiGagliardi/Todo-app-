@@ -1,58 +1,169 @@
 
+import { setDate } from './dates';
+import { isBefore, parseISO, endOfDay, startOfDay, isAfter } from 'date-fns'
+import { domMenu, checkboxStyle, hideBackground, showBackground, addTaskDOM, renderTasks, addProjectDOM, renderProjects } from './dom';
+
 const todoList = (function () {
 
+
+    domMenu();
+    hideBackground();
+    showBackground();
+    addTaskDOM();
+
+
     let projects = [
-        [],
+        { name: 'Inbox', tasks: [] },
     ];
 
     let currentProject = 0;
 
-    function createProject() {
-        projects.push([])
+    function createProject(name) {
+        projects.push(
+            {
+                name: name,
+                tasks: []
+            }
+        )
     };
 
-    class CreateTodo {
-        constructor(title, description, dueDate) {
-            this.title = title;
-            this.description = description;
+    function render() {
+
+        const taskList = document.querySelector('.task-list');
+
+        while (taskList.firstChild) {
+            taskList.removeChild(taskList.firstChild)
+        };
+        
+        projects[currentProject].tasks.forEach((task, index) => {
+
+            renderTasks(task.task, task.dueDate, index)
+        })
+
+        checkboxStyle();
+
+    }
+
+    class CreateTask {
+        constructor(task, dueDate, originalDate) {
+            this.task = task;
             this.dueDate = dueDate;
-            this.priority = false;
-            this.completed = false;
+            this.originalDate = originalDate;
         };
     };
 
-    function addTodo(title, description, dueDate) {
-        const newTodo = new CreateTodo(title, description, dueDate);
-        projects[currentProject].push(newTodo);
+    function addTask(arr) {
+
+        if (arr === undefined) return
+
+        const newTask = new CreateTask(arr[0], arr[1], arr[2]);
+        projects[currentProject].tasks.push(newTask);
     };
 
-    function deleteTodo(index) {
-        if (projects[currentProject].length === 0) {
-            return
-        } else {
-            projects[currentProject].splice(index, 1);
-        }
-    };
+    function completeTask(index) {
 
-    function changePriority(index) {
-        projects[currentProject][index].priority = true;
-    };
+        projects[currentProject].tasks.splice(index, 1)
 
-    function completeTodo(index) {
-        projects[currentProject][index].completed = true;
     }
 
 
-    addTodo('asd', 'asd', 2020);
-    addTodo('asdd', 'asdd', 2021);
-    deleteTodo(3);
-    changePriority(1);
-    completeTodo(1);
-    createProject();
-    createProject();
+    const addTaskBtn = document.querySelector('#addTask-btn')
+
+    addTaskBtn.addEventListener('click', () => {
+
+        const taskList = document.querySelector('.task-list');
+
+        addTask(addTaskDOM());
+
+        while (taskList.firstChild) {
+            taskList.removeChild(taskList.firstChild)
+        };
+
+        projects[currentProject].tasks.sort((a, b) => {
+
+            if (isBefore(parseISO(a.originalDate), parseISO(b.originalDate))) {
+                return -1
+            } else {
+                return 1
+            }
+        })
+        render();
+    })
+
+    const taskList = document.querySelector('.task-list')
 
 
-    console.log(projects);
+    taskList.addEventListener('click', e => {
+
+
+        if (e.target.className.includes('checkmark')) {
+
+            const index = e.target.id
+
+            const task = document.querySelector(`.n${index}`)
+
+            task.classList.toggle('hide-task')
+
+            setTimeout(() => {
+                completeTask(index)
+
+                while (taskList.firstChild) {
+                    taskList.removeChild(taskList.firstChild)
+                };
+
+                render()
+            }, 400)
+        }
+    })
+
+    const addProjectBtn = document.querySelector('#add-project-btn')
+
+
+    addProjectBtn.addEventListener('click', () => {
+
+        const input = document.querySelector('#project-input')
+
+        if (input.validity.valid) {
+            createProject(addProjectDOM())
+            renderProjects(projects)
+        } else {
+            return
+        }
+    });
+
+    renderProjects(projects);
+
+
+
+
+
+    const projectList = document.querySelector('#projects-ul')
+
+
+    projectList.addEventListener('click', e => {
+
+        const projectTitle = document.querySelector('.project-title')
+
+        if (e.target.className.includes('project')) {
+
+            const projectLi = document.querySelectorAll('.project')
+
+            projectLi.forEach((project) => {
+                project.classList.remove('word-highlight')
+            });
+
+
+            const project = e.target
+            projectTitle.textContent = project.textContent
+
+            projectLi[project.id].classList.add('word-highlight')
+            currentProject = project.id
+            render()
+        }
+    })
+
+
+
 
 })();
 
