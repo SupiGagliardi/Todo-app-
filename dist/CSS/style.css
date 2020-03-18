@@ -57,6 +57,9 @@ nav {
 nav .project-section {
   padding-top: 1.3rem;
   visibility: hidden;
+  opacity: 0;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
 }
 
 nav .project-section h1 {
@@ -95,11 +98,12 @@ nav .project-section .new-project {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  font-weight: 300;
   cursor: pointer;
 }
 
 nav .project-section .new-project img {
-  height: 17px;
+  height: 14px;
   width: auto;
   margin-left: 10px;
 }
@@ -165,12 +169,29 @@ nav .project-section .hide-add-project {
   display: none;
 }
 
+nav .show-project-section {
+  visibility: visible;
+  opacity: 1;
+}
+
 nav .delete-project {
   visibility: hidden;
   font-size: 1.0625rem;
   font-weight: 400;
   color: #aaaaaa;
   padding-bottom: 1.5rem;
+  opacity: 0;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+nav .show-delete-project {
+  visibility: visible;
+  opacity: 1;
+}
+
+.open-nav {
+  width: 11rem;
 }
 
 main {
